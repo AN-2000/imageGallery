@@ -1,0 +1,111 @@
+<html>
+    <head>
+  
+        <script src=" http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <style>
+
+            .thumbnail-height{
+                height: 8rem;
+            }
+
+            .fix{
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Image Gallery</h1>
+            <hr>
+
+            <div class="row mt-5">
+                <div class="col-3 thumbnail-height">
+                    <img id="image1" class="fix thumbnail" src="https://images.unsplash.com/photo-1518416177092-ec985e4d6c14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80" alt="">
+    
+                </div>
+                <div class="col-3 thumbnail-height">
+                    <img id="image2" class="fix thumbnail" src="https://images.unsplash.com/photo-1534942003379-6cf6bbb4f5a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=742&q=80" alt="">
+    
+                </div>
+                <div class="col-3 thumbnail-height">
+                    <img id="image3" class="fix thumbnail" src="https://images.unsplash.com/photo-1501336843423-d808e7a9dc08?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=755&q=80" alt="">
+    
+                </div>
+                <div class="col-3 thumbnail-height">
+                    <img id="image4" class="fix thumbnail" src="https://images.unsplash.com/photo-1534793443943-56b6f97a9e0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80" alt="">
+    
+                </div>
+                
+                
+            </div>
+
+            <div class="row mt-5 mb-5">
+                <button class="col-1" id="pre" style="height: 2rem;"> </button>
+                <div class="col-10" style="height: 70vh;"><img id="view" class="fix" src="https://images.unsplash.com/photo-1518416177092-ec985e4d6c14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80" alt=""></div>
+                <button class="col-1" id="next"  style="height: 2rem;"> </button>
+            </div>
+            
+
+
+
+        </div>
+        
+
+
+        
+        
+          <script type="text/javascript">
+
+                var paused = false;
+                var counter = 1;
+                $('#pre').text("<")
+                $('#next').text(">")
+
+
+                $(".thumbnail").click(
+                    function viewImg(){
+                    $("#view").attr("src",$(this).attr('src'))
+                })
+                
+                $("#view").click(function(){
+                    if(paused==false){
+                        paused = true;
+                    }else{
+                        paused = false;
+                    }
+                })
+
+                $('#pre').click(function(){
+                    
+                    counter = counter -1;
+                    if(counter<1){
+                        counter = 4;
+                    }
+                    
+                    $("#image"+counter).click()
+                })
+
+                function nextfn(){
+                    counter = counter +1;
+                    if(counter>4){
+                        counter = 1;
+                    }
+                  
+                    $("#image"+counter).click()
+                }
+                $('#next').click(nextfn)
+    
+                setInterval(function(){
+                    if(paused==false)
+                    nextfn()
+                },3000)
+    
+          </script>
+     </body>
+</html>
